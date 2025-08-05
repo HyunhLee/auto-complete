@@ -10,18 +10,20 @@ const App = () => {
   // 검색어 입력 시 자동완성 API 호출
   useEffect(() => {
     const fetchSuggestions = async () => {
-      if (query.trim() === '') {
+      if (query.trim() === '' || query.length < 2) {
         setSuggestions([]);
         return;
       }
 
-      try {
-        const res = await axios.get(`https://api-dev.balhea.kr/ctg_spec/search?keyword=${encodeURIComponent(query)}`);
-        setSuggestions(res.data);
-      } catch (err) {
-        console.error('자동완성 API 에러:', err);
-        setSuggestions([]);
-      }
+      setSuggestions(['나사', '나사못', '나사우주정거장'])
+
+      // try {
+      //   const res = await axios.get(`https://api-dev.balhea.kr/ctg_spec/search?keyword=${encodeURIComponent(query)}`);
+      //   setSuggestions(res.data);
+      // } catch (err) {
+      //   console.error('자동완성 API 에러:', err);
+      //   setSuggestions([]);
+      // }
     };
 
     const debounce = setTimeout(fetchSuggestions, 300); // 300ms 딜레이
