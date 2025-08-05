@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const App = () => {
   const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<any[]>([]);
   const [selectedResult, setSelectedResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +15,7 @@ const App = () => {
         return;
       }
 
-      setSuggestions(['나사', '나사못', '나사우주정거장'])
+      setSuggestions([['나사',23414,'"전시카테고리 > 철물ㆍ원예ㆍ사무용품 > 포장기자재 > 조임기·결속기 > 결속기'], ['나사못',32513,'"전시카테고리 > 철물ㆍ원예ㆍ사무용품 > 포장기자재 > 조임기·결속기 > 결속기'], ['나사우주정거장',53732,'"전시카테고리 > 철물ㆍ원예ㆍ사무용품 > 포장기자재 > 조임기·결속기 > 결속기']])
 
       // try {
       //   const res = await axios.get(`https://api-dev.balhea.kr/ctg_spec/search?keyword=${encodeURIComponent(query)}`);
@@ -31,7 +31,7 @@ const App = () => {
   }, [query]);
 
   // 제안 항목 클릭 시 상세 API 호출
-  const handleSelect = async (item: string) => {
+  const handleSelect = async (item: any) => {
     setQuery(item);
     setSuggestions([]);
     setLoading(true);
