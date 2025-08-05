@@ -37,7 +37,7 @@ const App = () => {
     setLoading(true);
 
     try {
-      const res = await axios.get(`/api/details?keyword=${encodeURIComponent(item)}`);
+      const res = await axios.get(`https://api-dev.balhea.kr/ctg_spec/template?ctg=${encodeURIComponent(item[2])}`);
       setSelectedResult(res.data);
     } catch (err) {
       console.error('상세 API 에러:', err);
