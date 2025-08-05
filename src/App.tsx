@@ -15,15 +15,13 @@ const App = () => {
         return;
       }
 
-      setSuggestions([['나사',23414,'"전시카테고리 > 철물ㆍ원예ㆍ사무용품 > 포장기자재 > 조임기·결속기 > 결속기'], ['나사못',32513,'"전시카테고리 > 철물ㆍ원예ㆍ사무용품 > 포장기자재 > 조임기·결속기 > 결속기'], ['나사우주정거장',53732,'"전시카테고리 > 철물ㆍ원예ㆍ사무용품 > 포장기자재 > 조임기·결속기 > 결속기']])
-
-      // try {
-      //   const res = await axios.get(`https://api-dev.balhea.kr/ctg_spec/search?keyword=${encodeURIComponent(query)}`);
-      //   setSuggestions(res.data);
-      // } catch (err) {
-      //   console.error('자동완성 API 에러:', err);
-      //   setSuggestions([]);
-      // }
+      try {
+        const res = await axios.get(`https://api-dev.balhea.kr/ctg_spec/search?keyword=${encodeURIComponent(query)}`);
+        setSuggestions(res.data);
+      } catch (err) {
+        console.error('자동완성 API 에러:', err);
+        setSuggestions([]);
+      }
     };
 
     const debounce = setTimeout(fetchSuggestions, 300); // 300ms 딜레이
